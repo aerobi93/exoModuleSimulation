@@ -1,0 +1,48 @@
+@use 'src/styles/vars';
+
+.cardModule {
+
+    &__card {
+        display: flex;
+        width: 40%;
+        margin:  vars.$margin  0;
+        flex-wrap: wrap;
+        border: black 1px solid;
+        margin-left: 30%;
+        padding: vars.$padding;
+    }
+    &__name {
+        font-family: vars.$basker;
+        font-size: vars.$fontSize;
+        font-style: italic;
+        font-weight: bolder;
+        text-shadow: white 1px 1px;
+        width: 100%;
+        text-align: center;
+        color: rgb(7, 190, 223);
+        margin: 0.5rem  0 vars.$margin  0; 
+    }
+    &__update{
+        width: 100%;
+        margin-bottom: vars.$margin * 0.5;
+    }
+    &__power {
+        width: 100%;
+        &--green {
+            color: green;
+        }
+        &--red {
+            color: red
+        }
+    }
+    &__detail {
+        margin-top: vars.$margin;
+        width: 100%;
+        text-align: center;
+        background-color: transparent;
+        border: none;
+        font-family: vars.$basker;
+        font-style: italic;
+    
+    }
+}

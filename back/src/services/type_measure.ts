@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { Itype_mesasure } from "../inteface";
+import { Itype_mesasure } from "../interface";
 
 const prisma = new PrismaClient()
 

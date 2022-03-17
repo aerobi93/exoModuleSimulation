@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { ImoduleIOT } from "../inteface";
+import { ImoduleIOT } from "../interface";
 
 
 const prisma = new PrismaClient()

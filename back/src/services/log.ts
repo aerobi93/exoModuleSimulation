@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { Ilog} from "../inteface";
+import { Ilog} from "../interface";
 
 const prisma = new PrismaClient();
 

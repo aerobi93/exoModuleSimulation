@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { Imeasure } from "../inteface";
+import { Imeasure } from "../interface";
 
 const prisma = new PrismaClient();
 
@@ -13,7 +13,7 @@ export const add = async (data : Imeasure) => {
 export const findUnique = async(id : number ) => {
     const findU = prisma.measure.findUnique({
         where: {
-            id
+            id,
         }
     })
     return await findU

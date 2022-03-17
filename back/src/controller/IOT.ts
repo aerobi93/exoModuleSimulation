@@ -1,11 +1,11 @@
 
 import { PrismaClient } from "@prisma/client";
-import { Ilog } from "../inteface";
-import { add, findUnique, findAll, deleteUnique, update} from "../services/log";
+import { ImoduleIOT } from "../interface";
+import { add, findUnique, findAll, deleteUnique, update} from "../services/IOT";
 
 const prisma = new PrismaClient()
 
-export const adding = async (data :Ilog) => {
+export const adding = async (data :ImoduleIOT) => {
     await add(data) 
     try {
         return 'enregistrement effectué'  
@@ -43,7 +43,7 @@ export const findA = async () => {
     }
 }
 
-export const updateU = async (id : number, data : Ilog) => {
+export const updateU = async (id : number, data : ImoduleIOT) => {
     await update(id, data)  
     try {
         return 'modification effectué'  

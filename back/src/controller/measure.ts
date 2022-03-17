@@ -1,17 +1,18 @@
 
 import { PrismaClient } from "@prisma/client";
-import { ImoduleIOT } from "../inteface";
-import { add, findUnique, findAll, deleteUnique, update} from "../services/IOT";
+import { Imeasure, ImoduleIOT} from "../interface";
+import { add, findUnique, findAll, deleteUnique, update} from "../services/measure";
+import { findU as findModule } from "../controller/IOT";
 
 const prisma = new PrismaClient()
 
-export const adding = async (data :ImoduleIOT) => {
+export const adding = async (data :Imeasure) => {
     await add(data) 
     try {
         return 'enregistrement effectué'  
     } 
     catch (error) {
-     return error   
+    return error   
     }
     finally {
         prisma.$disconnect
@@ -43,7 +44,7 @@ export const findA = async () => {
     }
 }
 
-export const updateU = async (id : number, data : ImoduleIOT) => {
+export const updateU = async (id : number, data : Imeasure) => {
     await update(id, data)  
     try {
         return 'modification effectué'  

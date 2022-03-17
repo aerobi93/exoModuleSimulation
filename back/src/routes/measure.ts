@@ -1,6 +1,5 @@
 import Router, { IRouterContext } from "koa-router";
 import { adding, findA, findU, updateU, deleteU } from "../controller/measure";
-import { findU as findModule } from "../controller/IOT";
 
 const router = new Router()
  

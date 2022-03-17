@@ -1,11 +1,12 @@
 export interface Itype_mesasure {
    value: string,
+
 }
 
 export interface ImoduleIOT {
-
    name : string,
-   typeMeasure_id : number 
+   typeMeasure_id : number,
+   power? : boolean
 }
 
 export interface Imeasure {

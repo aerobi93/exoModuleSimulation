@@ -1,6 +1,6 @@
 import { PrismaClient} from "@prisma/client";
 import { findmany, add, updateU, deleteA } from "../services/type_measure"; 
-import { Itype_mesasure } from "../inteface";
+import { Itype_mesasure } from "../interface";
 
 const prisma = new PrismaClient()
 

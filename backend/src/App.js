@@ -1,9 +1,11 @@
-import React from 'react';
+import react from "react";
+import "./styles/index.scss"
+import CardModule from "./componants/cardIOT";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-    
+    <div className="app">
+      <CardModule />
     </div>
   );
 }

@@ -17,14 +17,41 @@
         font-style: italic;
         font-weight: bolder;
         text-shadow: white 1px 1px;
-        width: 100%;
+        width: 90%;
         text-align: center;
         color: rgb(7, 190, 223);
         margin: 0.5rem  0 vars.$margin  0; 
     }
+    &__onOff {
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        &::after {
+           content: '|';
+           
+        margin: 0.65rem;
+        }
+
+        &--off {
+            border: red solid 1px;
+            &::after {
+                color: red;
+            }
+        }
+
+        &--on {
+            border: green solid 1px;
+            &::after {
+                color: green;
+            }
+        }
+    }
+
     &__update{
         width: 100%;
-        margin-bottom: vars.$margin * 0.5;
+        text-align: center;
+        font-size:  12px;
+        margin-top: vars.$margin * 0.5;
     }
     &__power {
         width: 100%;
@@ -43,6 +70,17 @@
         border: none;
         font-family: vars.$basker;
         font-style: italic;
-    
+    }
+    &__lastValueContainer {
+        width: 100%;
+        margin-bottom: vars.$margin * 0.5;
+
+    }
+    &__lastValue {
+        width: 100%;
+    }
+    &__lastValueDate {
+        width: 100%;
+        margin: vars.$margin * 0.5 0;
     }
 }

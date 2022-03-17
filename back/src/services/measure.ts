@@ -20,7 +20,7 @@ export const findUnique = async(id : number ) => {
 }
 
 export const findAll = async() => {
-    const findA = prisma.measure.findMany()
+    const findA = prisma.measure.findMany( )
     return await findA
 }
 

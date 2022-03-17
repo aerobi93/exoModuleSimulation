@@ -55,6 +55,7 @@
     }
     &__power {
         width: 100%;
+        margin-top: vars.$margin;
         &--green {
             color: green;
         }
@@ -71,6 +72,21 @@
         font-family: vars.$basker;
         font-style: italic;
     }
+    &__error {
+        width: 100%;
+        margin: vars.$margin * 0.25 0;
+    }
+    &__nberror {
+        font-weight: bolder;
+
+        &--green {
+            color: green;
+        }
+        &--red {
+            color: red;
+        }
+    }
+
     &__lastValueContainer {
         width: 100%;
         margin-bottom: vars.$margin * 0.5;

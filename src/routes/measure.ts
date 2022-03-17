@@ -1,7 +1,9 @@
 import Router, { IRouterContext } from "koa-router";
 import { adding, findA, findU, updateU, deleteU } from "../controller/measure";
-const router = new Router()
+import { findU as findModule } from "../controller/IOT";
 
+const router = new Router()
+ 
 router.post('IOT', '/measure/add', async (ctx: IRouterContext) => {
 ctx.body = await adding(ctx.request.body)
 })

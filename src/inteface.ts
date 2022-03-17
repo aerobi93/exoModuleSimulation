@@ -13,3 +13,9 @@ export interface Imeasure {
    module_id : number
 
 }
+export interface Ilog {
+ restart? : boolean,
+ dysfunction?: boolean,
+ surcharge? :boolean,
+ module_id: number,
+}

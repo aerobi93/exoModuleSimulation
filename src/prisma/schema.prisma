@@ -31,7 +31,7 @@ model Type_measure {
 model Log {
   id Int @id @default(autoincrement())
   restart Boolean?
-  dysfonction Boolean?
+  dysfunction Boolean?
   surcharge Boolean?
   date DateTime @default(now())
   module_id Int

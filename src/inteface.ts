@@ -5,6 +5,11 @@ export interface Itype_mesasure {
 export interface ImoduleIOT {
 
    name : string,
-   typeMeasure_id : number
-  
+   typeMeasure_id : number 
+}
+
+export interface Imeasure {
+   value : number,
+   module_id : number
+
 }

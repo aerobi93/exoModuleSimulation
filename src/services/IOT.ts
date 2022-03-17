@@ -5,7 +5,6 @@ import { ImoduleIOT } from "../inteface";
 const prisma = new PrismaClient()
 
 export const add = async(data: ImoduleIOT) => {
-    console.log(data);
     
     const adding = prisma.module_IOT.create({
         data 
@@ -17,13 +16,21 @@ export const findUnique = async(id : number) => {
     const findU =  prisma.module_IOT.findUnique({
         where : {
             id : +id
+        },
+        include: {
+            type_measures :true
         }
+       
     })
     return await findU
 } 
 
 export const findAll = async() => {
-    const findA = prisma.module_IOT.findMany()
+    const findA = prisma.module_IOT.findMany({
+        include: {
+            type_measures :true
+        }
+    })
     return await  findA
 }
 

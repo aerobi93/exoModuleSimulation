@@ -22,9 +22,8 @@ model Module_IOT {
 
 model Type_measure {
   id Int @id @default(autoincrement())
-  value String 
+  value String  @unique(map: "Type_measure_value_unique_constraint")
   modules Module_IOT[]
-  @@unique([value])
 }
 
 model Log {

@@ -18,7 +18,9 @@ export const findUnique = async(id : number) => {
             id : +id
         },
         include: {
-            type_measures :true
+            type_measures :true, 
+            measures : true,
+            logs: true
         }
        
     })
@@ -28,7 +30,9 @@ export const findUnique = async(id : number) => {
 export const findAll = async() => {
     const findA = prisma.module_IOT.findMany({
         include: {
-            type_measures :true
+            type_measures :true, 
+            measures : true,
+            logs: true
         }
     })
     return await  findA

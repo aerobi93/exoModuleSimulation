@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import Log from "../log";
 import './styles.scss';
 
+import NumberError from "./numberError";
+import AddIOT from "../AddIOT";
+
 const CardModule = () => {
   const [DataM, setDataM] = useState()
   const [displayLog, setDisplayLog] = useState(Boolean)
@@ -45,9 +48,6 @@ const CardModule = () => {
                   nbSurcharge+= 1
                 } 
               })
-
-
-              console.log(nbSurcharge, nbrestart)
               const lastResut = data.measures.slice(0, 1)
               const typeMeasure = data.type_measures.value
               return (
@@ -66,18 +66,8 @@ const CardModule = () => {
                           </span>
                         </div>
                     ))}
-                <div className='cardModule__error'>
-                      nombre de redemarage automatique :
-                      <span className={`cardModule__nberror ${nbrestart === 0 ? 'cardModule__nberror--green' :  'cardModule__nberror--red' }`}>
-                        {' ' + nbrestart}
-                      </span>
-                </div>
-                <div className='cardModule__error'>
-                      nombre de fois ou la valeur a depasse la limite  :
-                      <span className={`cardModule__nberror ${nbSurcharge === 0 ? 'cardModule__nberror--green' :  'cardModule__nberror--red' }`}>
-                        {' ' + nbSurcharge}
-                      </span>
-                </div>
+                <NumberError typeError={nbrestart} message={'redemarage automatique'} />
+                <NumberError typeError={nbSurcharge}message={'ou  le seuil  a été dépassé'} />
                 <div className="cardModule__etat">etat  : 
                   <span className={`cardModule__power ${data.power ?  'cardModule__power--green': 'cardModule__power--red'} `}>
                     {data.power ?  'allumé': 'eteint' }

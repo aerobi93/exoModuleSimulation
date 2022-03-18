@@ -1,0 +1,15 @@
+@use 'src/styles/vars';
+
+.nav {
+    position: relative;
+    top: 8rem;
+    left: 80%;
+    &__ol {
+        display: flex;
+        flex-direction: column;
+    }
+    &__link {
+        margin-bottom: vars.$margin ;
+        color: rgb(7, 190, 223);;
+    }
+}

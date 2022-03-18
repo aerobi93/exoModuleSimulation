@@ -13,7 +13,9 @@ const app = new Koa()
 const port = 4000
 app
     .use(BodyParser())
-    .use(Cors())
+    .use(Cors({
+      origin: "*"
+  }))
     .use(IOT.routes())
     .use(Type_measure.routes())
     .use(Measure.routes())

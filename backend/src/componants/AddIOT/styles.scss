@@ -1,0 +1,66 @@
+@use "src/styles/vars";
+
+.addIOT {
+    margin-top: 8rem;
+    width: 50%;
+    margin-left: 25%;
+
+    &__form {
+        display: flex;
+
+        flex-wrap: wrap;
+    }
+    &__input {
+
+        width: 100%;
+        border-radius: 20px;
+        padding: 1rem ;  
+        background-color: transparent;
+
+        &--type {
+            margin-top: vars.$margin * 2;
+            width: 35%;
+        }
+    }
+    &__select {
+        margin-top: 2rem;
+        width: 40%;
+        padding: 1rem ;
+        border-radius: 20px;
+       
+    }
+    &__option {
+        font-size: vars.$fontSize * 0.5;
+       
+        &--add {
+            font-weight: bolder;
+            color: red;
+        }
+    }
+    &__submit {
+        width: 20%;
+        background-color: transparent;
+        border: none;
+        color: rgb(7, 190, 223);
+        font-size: vars.$fontSize * 1.5;
+        font-weight: bolder;
+        font-style: italic;
+        text-shadow: black 1px  1px;
+        position: relative;
+        top: 1rem; left: 3rem;
+        
+        &--type {
+       
+            position: relative;
+            top: 2rem;
+         
+        }
+    }
+    &__textAddType {
+        width: 100%;
+        text-align: center;
+        margin-top: vars.$margin * 2;
+        font-size: vars.$fontSize;
+    }
+
+}

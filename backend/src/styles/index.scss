@@ -1,6 +1,21 @@
 @use 'src/styles/reset';
 
 .app {
-    margin: auto;
-    width: 80%;
+  &__container {
+      width: 80%;
+      margin: auto;
+      position: relative;
+      bottom: 12rem;
+  }
+
+    &__title{
+        margin : 2rem 0;
+        text-align: center;
+        color: rgb(7, 190, 223);
+        font-size: 4rem;
+        text-shadow: black 3px 3px;
+        text-transform: capitalize;
+        font-weight: bolder;
+
+    }
 }

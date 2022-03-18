@@ -3,7 +3,6 @@ import Log from "../log";
 import './styles.scss';
 
 import NumberError from "./numberError";
-import AddIOT from "../AddIOT";
 
 const CardModule = () => {
   const [DataM, setDataM] = useState()
@@ -34,7 +33,6 @@ const CardModule = () => {
   }
 
   const deleteIOT = (id) => {
-    console.log(id, id)
     const confirm = window.confirm( 'voulez vous suprimes ce module')
     if (confirm) {
       const params = {

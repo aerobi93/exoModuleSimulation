@@ -1,0 +1,27 @@
+@use 'src/styles/vars';
+
+.type {
+    width: 40%;
+    margin-top: 6rem;
+    margin-left: 30%;
+    background-color: rgb(233, 231, 231);
+
+    &__flex {
+        display: flex;
+        justify-content: left;
+        background-color: rgb(233, 231, 231);
+        padding: vars.$padding ;
+      border: solid wheat 1px;
+    }
+    &__name {
+        font-size: vars.$fontSize ;
+        width: 90%;
+    }
+    &__delete {
+        font-size: 1.5rem; 
+        width: 10%;
+        &::after {
+            content: '	\274C';
+        }
+    }
+}

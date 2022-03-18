@@ -5,6 +5,7 @@ import "./styles/index.scss"
 import CardModule from "./componants/cardIOT";
 import AddIOT from "./componants/AddIOT";
 import NavBar from "./componants/navBar";
+import TypeMeasure from "./componants/typeMeasure";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Routes >
           <Route exact path='/' element={ <CardModule />} />
           <Route exact path='/newModule' element={ <AddIOT /> } />
+          <Route exact path='/measures' element={ <TypeMeasure /> } />
         </Routes>
       </div>
     </div>

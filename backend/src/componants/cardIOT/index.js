@@ -32,6 +32,26 @@ const CardModule = () => {
     fetch(`http://localhost:4000/IOT/update/${id}`, params)
     .then(() => setIOTState(!IOTstate))
   }
+
+  const deleteIOT = (id) => {
+    console.log(id, id)
+    const confirm = window.confirm( 'voulez vous suprimes ce module')
+    if (confirm) {
+      const params = {
+        method: 'DELETE',
+          headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+        }
+      }
+      fetch(`http://localhost:4000/IOT/delete/${id}`, params)
+      .then(() => {
+        alert('le module a bien ete suprime')
+        setIOTState(!IOTstate)
+
+      })
+    }
+  
+  }
   return (
     <div className="cardModule">
       {DataM &&  
@@ -53,6 +73,8 @@ const CardModule = () => {
               return (
               <div className="cardModule__card" key = {data.id}>
                 <h2 className="cardModule__name">{data.name}</h2>
+                <div 
+                  className='cardModule__delete' onClick={() =>deleteIOT(data.id)} />
                 <div 
                   className={`cardModule__onOff ${data.power ? 'cardModule__onOff--on' : 'cardModule__onOff--off' }`} 
                   onClick={() =>ChangeStateModule(data.id, data.power)} />

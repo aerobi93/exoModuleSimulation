@@ -25,7 +25,6 @@ export const findAll = async() => {
 }
 
 export const update = async (id: number, data : Imeasure) => {
-    console.log("test")
     const updateU = prisma.measure.update({
         data, 
         where: {

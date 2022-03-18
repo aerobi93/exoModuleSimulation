@@ -27,8 +27,7 @@
         height: 1.5rem;
         border-radius: 50%;
         &::after {
-           content: '|';
-           
+           content: '|';  
         margin: 0.65rem;
         }
 
@@ -46,7 +45,13 @@
             }
         }
     }
-
+    &__delete {
+        font-size: 1.5rem; 
+        position: absolute;
+        &::after {
+            content: '	\274C';
+        }
+    }
     &__update{
         width: 100%;
         text-align: center;

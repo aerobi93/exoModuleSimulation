@@ -85,7 +85,7 @@ const AddIOT = () => {
         <select className="addIOT__select"    onChange={(evt) => setIDmesure(evt.target.value)}>
           <option className="addIOT__option" value=''> type de mesure </option>
           {typeMeasure && typeMeasure.map((mesure) => (
-            <option 
+            <option key={mesure.id}
               className="addIOT__option" 
               value={mesure.id}
               onChange={() => setIDmesure(1)}> 

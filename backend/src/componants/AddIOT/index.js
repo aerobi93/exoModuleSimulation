@@ -18,12 +18,21 @@ const AddIOT = () => {
       })
   }, [])
 
+  useEffect(() => {
+    if (IDmesasure == "add") {
+      console.log('change')
+      setDisplaytypeForm(!displaytypeForm)
+    }
+  }, [IDmesasure])
+
   const params = {
     method: 'POST',
     headers: {
      'Content-Type': 'application/json;charset=utf-8'
    },
   }
+
+
 
   const handlerSubmit= (evt) => {
     evt.preventDefault();
@@ -43,9 +52,6 @@ const AddIOT = () => {
         }
       )
     }
-    if (IDmesasure != "add") {
-      setDisplaytypeForm(!displaytypeForm)
-    }
   }
 
   const SubmitType = (evt) => {
@@ -64,6 +70,7 @@ const AddIOT = () => {
       .then(()=> {
         setIDmesure(lastId + 1)
        alert('type ajouter et associcier automatique, veiller juste enter un nom de Module et l ajouter')
+       setDisplaytypeForm(!displaytypeForm)
       })
       }
   }
@@ -89,16 +96,18 @@ const AddIOT = () => {
         </select>
           <button type='submit' className="addIOT__submit"> ajouter</button>
       </form>
-
-     <form className="addIOT__form" onSubmit={(evt) => SubmitType(evt)}>
-      <span className="addIOT__textAddType"> ajouter un type de mesasure</span>
-     <input 
-          type='text' className="addIOT__input addIOT__input--type" 
-          placeholder="ajoute un type de mesure"  
-          value= {newValueType} onChange={(evt) =>setNewValueType(evt.target.value)}
-        />  
-         <button type='submit' className="addIOT__submit addIOT__submit--type "> ajouter</button>
-     </form>
+        { displaytypeForm && 
+          <form className="addIOT__form" onSubmit={(evt) => SubmitType(evt)}>
+            <span className="addIOT__textAddType"> ajouter un type de mesasure</span>
+              <input 
+                  type='text' className="addIOT__input addIOT__input--type" 
+                  placeholder="ajoute un type de mesure"  
+                  value= {newValueType} onChange={(evt) =>setNewValueType(evt.target.value)}
+                />  
+              <button type='submit' className="addIOT__submit addIOT__submit--type "> ajouter</button>
+          </form>
+        }
+    
     </div>
   
   )

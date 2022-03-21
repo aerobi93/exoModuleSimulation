@@ -14,6 +14,7 @@ model Module_IOT {
   id Int @id @default(autoincrement())
   name String @unique(map: "Module_IOT_name_unique_constraint")
   power Boolean @default(true)
+  limit Int
   create_at DateTime @default(now())
   update_at DateTime @default(now())
   logs Log[]

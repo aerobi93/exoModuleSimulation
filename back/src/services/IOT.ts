@@ -56,3 +56,8 @@ export const deleteUnique= async(id : number) => {
     })
     return await deleteU
 }
+
+export const countIOT = async() => {
+    const count = prisma.module_IOT.count()
+    return  await count
+}

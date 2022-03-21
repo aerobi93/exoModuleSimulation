@@ -1,7 +1,7 @@
 
 import { PrismaClient } from "@prisma/client";
 import { ImoduleIOT } from "../interface";
-import { add, findUnique, findAll, deleteUnique, update} from "../services/IOT";
+import { add, findUnique, findAll, deleteUnique, update, countIOT} from "../services/IOT";
 
 const prisma = new PrismaClient()
 
@@ -58,6 +58,19 @@ export const updateU = async (id : number, data : ImoduleIOT) => {
 
 export const deleteU = async (id : number) => {
     await deleteUnique(id) 
+    try {
+        return 'surpression effectué'  
+    } 
+    catch (error) {
+     return error   
+    }
+    finally {
+        prisma.$disconnect
+    }
+}
+
+export const countModules = async () => {
+    await countIOT()
     try {
         return 'surpression effectué'  
     } 

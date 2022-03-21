@@ -9,14 +9,16 @@ const AddIOT = () => {
   const [IDmesasure, setIDmesure] = useState()
   const [newValue, setNewValue] = useState(String)
   const [newValueType, setNewValueType] = useState(String)
+  const [newValueLimit, setNewValueLimit] = useState(Number)
   const [displaytypeForm, setDisplaytypeForm] = useState(Boolean)
+  const [add, setAdd] = useState(Boolean)
   useEffect(() => {
     fetch('http://localhost:4000/type_measure')
       .then((result) => result.json())
       .then((result) => {
         setTypeMeasure(result)
       })
-  }, [])
+  }, [add])
 
   useEffect(() => {
     if (IDmesasure == "add") {
@@ -32,14 +34,13 @@ const AddIOT = () => {
    },
   }
 
-
-
   const handlerSubmit= (evt) => {
     evt.preventDefault();
-    if (newValue &&  IDmesasure != '' & IDmesasure != "add") {
+    if (newValue &&  IDmesasure != '' & IDmesasure != "add" && newValueLimit != '') {
       let sendAddIOT = {
         name : newValue,
-        typeMeasure_id : +IDmesasure
+        typeMeasure_id : +IDmesasure,
+        limit : +newValueLimit
       }
       let paramsIOT = {
         ...params,
@@ -48,7 +49,6 @@ const AddIOT = () => {
     fetch('http://localhost:4000/IOT/add', paramsIOT)
       .then((result)=> {
         navigate('/')
-        alert('type ajouter, vous pouvez ajouter un module avec ce type juste en tapant le nom du module ')
         }
       )
     }
@@ -56,9 +56,10 @@ const AddIOT = () => {
 
   const SubmitType = (evt) => {
     evt.preventDefault()
-    if (newValueType) {
+    if (newValueType.length > 0) {
       let length = typeMeasure.length
-      const lastId = typeMeasure[length - 1].id;
+      let  lastId
+      length <= 0 ? lastId = 0 :lastId= typeMeasure[length - 1].id;
       let sendAddType = {
         value : newValueType
       }
@@ -67,13 +68,25 @@ const AddIOT = () => {
         body: JSON.stringify(sendAddType)
       }
       fetch('http://localhost:4000/type_measure/add', paramsType)
-      .then(()=> {
+      .then((result)=> {
         setIDmesure(lastId + 1)
        alert('type ajouter et associcier automatique, veiller juste enter un nom de Module et l ajouter')
+       setAdd(!add)
        setDisplaytypeForm(!displaytypeForm)
       })
       }
   }
+
+  const handlerChange = (evt) => {
+
+    if (isNaN(evt.target.value)) {
+      alert('ceci n est pas un nombre')
+    }
+    else if (!isNaN(evt.target.value)) {
+       setNewValueLimit(evt.target.value)
+    }
+  }
+
   return (
     <div className="addIOT">
       <form className="addIOT__form" onSubmit={(evt) => handlerSubmit(evt)}>
@@ -82,6 +95,15 @@ const AddIOT = () => {
           placeholder="ajouter un nom de module"  
           value= {newValue} onChange={(evt) =>setNewValue(evt.target.value)}
         />
+       
+          <input 
+         type='text' 
+          className="addIOT__limit" 
+          placeholder="ajouter un nombre"
+          value={newValueLimit} 
+          onChange={(evt)=> handlerChange(evt)}
+          />
+         
         <select className="addIOT__select"    onChange={(evt) => setIDmesure(evt.target.value)}>
           <option className="addIOT__option" value=''> type de mesure </option>
           {typeMeasure && typeMeasure.map((mesure) => (
@@ -94,6 +116,7 @@ const AddIOT = () => {
           ))}
             <option className="addIOT__option addIOT__option--add" value='add' > ajouter une nouvel mesure </option>
         </select>
+
           <button type='submit' className="addIOT__submit"> ajouter</button>
       </form>
         { displaytypeForm && 
@@ -101,7 +124,7 @@ const AddIOT = () => {
             <span className="addIOT__textAddType"> ajouter un type de mesasure</span>
               <input 
                   type='text' className="addIOT__input addIOT__input--type" 
-                  placeholder="ajoute un type de mesure"  
+                   
                   value= {newValueType} onChange={(evt) =>setNewValueType(evt.target.value)}
                 />  
               <button type='submit' className="addIOT__submit addIOT__submit--type "> ajouter</button>

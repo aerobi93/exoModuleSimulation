@@ -8,7 +8,7 @@ import  Log from  './routes/log';
 
 import autoMEasureLog from './autoMEasureLog';
 
-
+autoMEasureLog()
 const app = new Koa()
 const port = 4000
 app

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import './styles.scss'
 
+
 const Logs = () => {
+  
+  const navigate = useNavigate()
   const { id } = useParams()
   const [logState, setLogState] = useState() 
   const [nameM, setNameM] = useState() 
@@ -17,13 +20,27 @@ const Logs = () => {
     fetch(url)
       .then((result) => result.json())
       .then((result) => {
-        console.log(result)
-        const {logs, measures, name} = result
-       let  allLogs =[
-          ...logs,
-          ...measures,
-       ]
-       let sort = allLogs.sort((a, b) => {
+        if(!id) {
+          let allLog = []
+          result.map((newResult) => {
+            if (newResult.logs.length > 0) {
+              allLog.push(...newResult.logs)
+            }
+            if (newResult.measures.length > 0) {
+              allLog.push(...newResult.measures)
+            }
+            setLogState(allLog)  
+         })
+        }
+        if(id) {
+          let allLog = [
+            ...result.logs,
+            ...result.measures
+          ]
+          setLogState(allLog)
+        }
+      
+       let sort = logState.sort((a, b) => {
          if (a.date < b.date) {
            return -1
          }
@@ -33,11 +50,11 @@ const Logs = () => {
        })
        setLogState(sort)
        setNameM(result.name)
-      })
+       })
 
   }, [changeState]) 
-
-  const handlerClick = (id, value) => {
+  console.log(logState, 'log')
+  const deleteU = (id, value) => {
     const params = {
       method: 'DELETE',
         headers: {
@@ -63,9 +80,37 @@ const Logs = () => {
     }
   }
 
+  const deleteMAny = (id) => {
+    const confirm = window.confirm( 'voulez vous suprimes ces donnee')
+    if (confirm) {
+      const params = {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        }
+      }
+      let urlLog = 'http://localhost:4000/log/delete'
+      let urlmeasure = 'http://localhost:4000/measure/delete'
+      if (id) {
+        urlLog+= `/module/${id}`
+        urlmeasure+= `/module/${id}`
+      }
+      fetch(urlLog, params)
+      .then(
+        fetch(urlmeasure, params)
+          .then(
+            alert('les logs ont bien ete suprimme'),
+            navigate('/')
+            
+          )
+      )
+    }
+  }
   return (
       <div className="log">
-        <button className="log__alldelete">suprimer la totalite des logs {id ? 'associer au module' + ' ' + nameM  : 'de tous les modules'}</button>
+        <button className="log__alldelete" onClick={() => deleteMAny(id)}>
+          suprimer la totalite des logs {id ? 'associer au module' + ' ' + nameM  : 'de tous les modules'}
+        </button>
         <div className="log__container">
           {logState && 
             logState.map((log) => {
@@ -88,10 +133,10 @@ const Logs = () => {
                 varian='green'
               }
               return (
-            <div className="log__detail" key={log.date}>
+            <div className="log__detail" key={log.id}>
               <time className="log__date">date : {log.date}</time>
               <span className={`log__message log__message--${varian}`}> {message}</span>
-              <button className="log__delete" onClick={() => handlerClick(log.id, log.value)}/> 
+              <button className="log__delete" onClick={() => deleteU(log.id, log.value)}/> 
             </div>
             )
             })

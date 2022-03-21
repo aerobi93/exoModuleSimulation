@@ -92,8 +92,9 @@ const CardModule = () => {
                     {data.power ?  'allumé': 'eteint' }
                   </span> 
                 </div>
-                
-                <Link to={`/log/${data.id}`} className="cardModule__detail"> + detail</Link>
+                {(data.logs.length > 0 || data.measures.length > 0) && <Link to={`/logs/${data.id}`} className="cardModule__detail"> + detail</Link>}
+                {(data.logs.length == 0 && data.measures.length == 0) && <div className="cardModule__noLog">  pas de logs pour ce module</div>}
+             
               </div>
             
             )})

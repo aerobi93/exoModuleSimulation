@@ -18,8 +18,8 @@ const App = () => {
           <Route exact path='/' element={ <> <NavBar /> <CardModule /> </> } />
           <Route exact path='/newModule' element={ <> <NavBar /> <AddIOT /> </> } />
           <Route exact path='/measures' element={ <> <NavBar /> <TypeMeasure /> </> } />
-          <Route exact  path= '/log/:id' element={ <> <NavBar /> <Logs /> </> } />
-          <Route exact path='/log'  element={ <> <NavBar /> <Logs /> </> } />
+          <Route exact  path= '/logs/:id' element={ <> <NavBar /> <Logs /> </> } />
+          <Route exact path='/logs'  element={ <> <NavBar /> <Logs /> </> } />
         </Routes>
       </div>
     </div>

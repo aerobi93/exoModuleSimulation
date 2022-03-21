@@ -22,7 +22,6 @@ const AddIOT = () => {
 
   useEffect(() => {
     if (IDmesasure == "add") {
-      console.log('change')
       setDisplaytypeForm(!displaytypeForm)
     }
   }, [IDmesasure])

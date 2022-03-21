@@ -7,6 +7,9 @@ import NumberError from "./numberError";
 const CardModule = () => {
   const [DataM, setDataM] = useState()
   const [IOTstate, setIOTState] = useState(Boolean)
+  setInterval(() => {
+    setIOTState(!IOTstate)
+  }, 1000 * 60 * 2)
 
   useEffect(() => {
     fetch('http://localhost:4000/IOT')
@@ -32,7 +35,7 @@ const CardModule = () => {
   }
 
   const deleteIOT = (id) => {
-    const confirm = window.confirm( 'voulez vous suprimes ce module')
+    const confirm = window.confirm( 'voulez vous suprimez ce module')
     if (confirm) {
       const params = {
         method: 'DELETE',
@@ -86,7 +89,7 @@ const CardModule = () => {
                         </div>
                     ))}
                 <NumberError typeError={nbrestart} message={'redemarage automatique'} />
-                <NumberError typeError={nbSurcharge}message={'ou  le seuil  a été dépassé'} />
+                <NumberError typeError={nbSurcharge}message={'fois ou le seuil  a été dépassé'} />
                 <div className="cardModule__etat">etat  : 
                   <span className={`cardModule__power ${data.power ?  'cardModule__power--green': 'cardModule__power--red'} `}>
                     {data.power ?  'allumé': 'eteint' }

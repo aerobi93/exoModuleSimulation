@@ -11,7 +11,10 @@ const Logs = () => {
   const [nameM, setNameM] = useState() 
   const [changeState, setChangeState] = useState(Boolean) 
 
-  
+ 
+  setInterval(() => {
+    setChangeState(!changeState)
+  }, 1000 * 60 * 2);
   useEffect(() => {
     let url = 'http://localhost:4000/IOT'
     if (id) {
@@ -20,6 +23,19 @@ const Logs = () => {
     fetch(url)
       .then((result) => result.json())
       .then((result) => {
+
+        const sort = (array) => {
+          let newSort = array.sort((a, b) => {
+            if (a.date < b.date) {
+              return -1
+            }
+            if (a.date > b.date) {
+              return 1
+            }
+          })
+          return newSort
+        }
+
         if(!id) {
           let allLog = []
           result.map((newResult) => {
@@ -29,7 +45,7 @@ const Logs = () => {
             if (newResult.measures.length > 0) {
               allLog.push(...newResult.measures)
             }
-            setLogState(allLog)  
+            setLogState(sort(allLog))  
          })
         }
         if(id) {
@@ -37,23 +53,12 @@ const Logs = () => {
             ...result.logs,
             ...result.measures
           ]
-          setLogState(allLog)
+          setLogState(sort(allLog))
+          setNameM(result.name)
         }
-      
-       let sort = logState.sort((a, b) => {
-         if (a.date < b.date) {
-           return -1
-         }
-         if (a.date > b.date) {
-           return 1
-         }
-       })
-       setLogState(sort)
-       setNameM(result.name)
        })
 
   }, [changeState]) 
-  console.log(logState, 'log')
   const deleteU = (id, value) => {
     const params = {
       method: 'DELETE',

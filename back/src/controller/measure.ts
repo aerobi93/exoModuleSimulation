@@ -1,8 +1,9 @@
 
 import { PrismaClient } from "@prisma/client";
 import { Imeasure, ImoduleIOT} from "../interface";
-import { add, findUnique, findAll, deleteUnique, update} from "../services/measure";
+import { add, findUnique, findAll, update, deleteUnique, deleteAll, deleteByModule } from "../services/measure";
 import { findU as findModule } from "../controller/IOT";
+
 
 const prisma = new PrismaClient()
 
@@ -70,4 +71,30 @@ export const deleteU = async (id : number) => {
         prisma.$disconnect
     }
 }
+export const deleteByM = async (id : number) => {
+    await deleteByModule(id) 
+    try {
+        return 'surpression effectué'  
+    } 
+    catch (error) {
+     return error   
+    }
+    finally {
+        prisma.$disconnect
+    }
+}
+
+export const deleteA = async () => {
+    await deleteAll() 
+    try {
+        return 'surpression effectué'  
+    } 
+    catch (error) {
+     return error   
+    }
+    finally {
+        prisma.$disconnect
+    }
+}
+
 

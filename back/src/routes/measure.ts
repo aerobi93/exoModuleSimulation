@@ -1,5 +1,5 @@
 import Router, { IRouterContext } from "koa-router";
-import { adding, findA, findU, updateU, deleteU } from "../controller/measure";
+import { adding, findA, findU, updateU, deleteU, deleteByM, deleteA } from "../controller/measure";
 
 const router = new Router()
  
@@ -19,8 +19,16 @@ router.patch('IOT', '/measure/update/:id', async (ctx: IRouterContext) => {
     ctx.body = await updateU(+ctx.params.id, ctx.request.body)
 })
 
+router.delete('IOT', '/measure/delete', async (ctx: IRouterContext) => {
+    ctx.body = await deleteA()
+})
+
 router.delete('IOT', '/measure/delete/:id', async (ctx: IRouterContext) => {
     ctx.body = await deleteU(+ctx.params.id)
+})
+
+router.delete('IOT', '/measure/delete/module/:id', async (ctx: IRouterContext) => {
+    ctx.body = await deleteByM(+ctx.params.id)
 })
 
 

@@ -42,3 +42,17 @@ export const deleteUnique = async(id: number) => {
     })
     return await deleteU
 }
+
+export const deleteByModule = async(id: number) => {
+    const deleteBM = prisma.log.deleteMany({
+        where: {
+            module_id: id
+        }
+    })
+    return await deleteBM
+}
+
+export const deleteAll = async() => {
+    const deleteA = prisma.log.deleteMany({})
+    return await deleteA
+}

@@ -61,3 +61,4 @@ export const countIOT = async() => {
     const count = prisma.module_IOT.count()
     return  await count
 }
+

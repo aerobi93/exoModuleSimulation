@@ -72,7 +72,7 @@ export const deleteU = async (id : number) => {
 export const countModules = async () => {
     await countIOT()
     try {
-        return 'surpression effectué'  
+        return countIOT() 
     } 
     catch (error) {
      return error   
@@ -81,4 +81,3 @@ export const countModules = async () => {
         prisma.$disconnect
     }
 }
-

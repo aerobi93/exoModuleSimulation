@@ -1,0 +1,52 @@
+@use 'src/styles/vars';
+
+.log {
+
+    &__container {
+    width: 50%;
+    margin-left: 25%;
+    background-color: rgb(233, 231, 231);
+    }
+
+   
+    &__detail {
+        display: flex;
+        flex-wrap: wrap;
+        padding: vars.$padding;
+        border-bottom: black 1px solid;
+    }
+    &__date {
+        width: 100%;
+        padding:  0.5rem;
+    }
+
+    &__message {
+        width: 90%;
+        &--green {
+            color: green;
+        }
+        &--red {
+            color: red;
+        }
+    }
+    &__alldelete {
+        font-size: vars.$fontSize * 0.75;
+        margin: vars.$margin * 2 0 vars.$margin 0;
+       width: 100%;
+       text-align: center;
+        color: red;
+        border: none;
+        background: none;
+    }
+    &__delete {
+        border: none;
+        background: transparent;
+        position: relative;
+        bottom: 2rem;
+        font-size: 1.5rem; 
+        width: 10%;
+        &::after {
+            content: '	\274C';
+        }
+    }
+}

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Log from "../log";
+import { Link} from "react-router-dom";
 import './styles.scss';
 
 import NumberError from "./numberError";
 
 const CardModule = () => {
   const [DataM, setDataM] = useState()
-  const [displayLog, setDisplayLog] = useState(Boolean)
   const [IOTstate, setIOTState] = useState(Boolean)
 
   useEffect(() => {
@@ -94,14 +93,13 @@ const CardModule = () => {
                   </span> 
                 </div>
                 
-                <button onClick={()=> setDisplayLog(!displayLog)} className="cardModule__detail"> + detail</button>
-                {displayLog && <Log />}
-                <span className="cardModule__update">derniere mise a jour systeme : {data.update_at}</span>
+                <Link to={`/log/${data.id}`} className="cardModule__detail"> + detail</Link>
               </div>
             
             )})
           }
         </>}
+      
     </div>
   )
 }

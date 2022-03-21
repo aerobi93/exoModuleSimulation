@@ -21,8 +21,9 @@ export const adding = async (data :Imeasure) => {
 
 export const findU = async (id : number) => {
     await findUnique(id) 
-    try {
+    try { 
         return findUnique(id)
+      
     } 
     catch (error) {
      return error   

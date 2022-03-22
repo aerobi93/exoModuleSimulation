@@ -94,7 +94,7 @@ const AddIOT = () => {
           placeholder="ajouter un nom de module"  
           value= {newValue} onChange={(evt) =>setNewValue(evt.target.value)}
         />
-       
+        <div className="addIOT__limitText"> ajusté la limite maximum</div>
           <input 
          type='text' 
           className="addIOT__limit" 

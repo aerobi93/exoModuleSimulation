@@ -8,7 +8,7 @@ const NavBar = () => (
             <Link to='/newModule' className='nav__link' > ajouter un module</Link>
             <Link to='/' className='nav__link' > liste des module</Link>
             <Link to='/logs' className='nav__link' > voir tous les log</Link>
-            <Link to='/measures' className='nav__link' > voir tous les mesures</Link>
+            <Link to='/measures' className='nav__link' > voir tous les types mesures</Link>
         </ol>
     </nav>
 )

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+
+import { DatePesonalise } from "../../utils";
+import {MutatingDots}  from 'react-loader-spinner'
 import './styles.scss'
 
 
@@ -57,7 +60,7 @@ const Logs = () => {
           setNameM(result.name)
         }
        })
-
+       
   }, [changeState]) 
   const deleteU = (id, value) => {
     const params = {
@@ -116,11 +119,25 @@ const Logs = () => {
         <button className="log__alldelete" onClick={() => deleteMAny(id)}>
           suprimer la totalite des logs {id ? 'associer au module' + ' ' + nameM  : 'de tous les modules'}
         </button>
+
+        {!logState && 
+        <div className="log__loading">
+            <MutatingDots
+              className = 'log__l'
+              type="Spinner Type"
+              color="rgb(7, 190, 223)"
+              height={150}
+              width={150}
+              timeout={1000}
+          />
+        </div>                      
+        }
         <div className="log__container">
           {logState && 
             logState.map((log) => {
               let message
               let varian 
+              let date = DatePesonalise(log.date)
               if (log.dysfunction) {
                 message = 'erreur de fonctionnement'
                 varian = 'red'
@@ -139,7 +156,7 @@ const Logs = () => {
               }
               return (
             <div className="log__detail" key={log.id}>
-              <time className="log__date">date : {log.date}</time>
+              <time className="log__date">date : {date}</time>
               <span className={`log__message log__message--${varian}`}> {message}</span>
               <button className="log__delete" onClick={() => deleteU(log.id, log.value)}/> 
             </div>

@@ -21,9 +21,13 @@
             width: 35%;
         }
     }
-   
-    &__limit {
+    &__limitText {   
         margin-top: vars.$margin;
+        font-size: vars.$fontSize * 0.75;
+        color: rgb(7, 190, 223);
+    }
+    &__limit {
+        margin-top: vars.$margin * 0.5;
         width: 60%;
         padding: vars.$padding * 0.5;
         background: transparent;

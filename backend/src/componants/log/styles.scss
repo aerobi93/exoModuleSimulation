@@ -49,4 +49,12 @@
             content: '	\274C';
         }
     }
+    &__loading {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        width: 150px;
+        height: 150px;
+        top: 4rem ; left: calc(50% - 75px);
+    }
 }

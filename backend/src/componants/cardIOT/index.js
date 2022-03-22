@@ -3,6 +3,8 @@ import { Link} from "react-router-dom";
 import './styles.scss';
 
 import NumberError from "./numberError";
+import { DatePesonalise } from "../../utils";
+import { MutatingDots } from "react-loader-spinner";
 
 const CardModule = () => {
   const [DataM, setDataM] = useState()
@@ -54,10 +56,23 @@ const CardModule = () => {
   }
   return (
     <div className="cardModule">
+      {!DataM && 
+        <div className="cardModule__loading">
+          <MutatingDots
+            className = 'log__l'
+            type="Spinner Type"
+            color="rgb(7, 190, 223)"
+            height={150}
+            width={150}
+            timeout={1000}
+        />
+      </div>   
+      }
       {DataM &&  
         <>
           {
-            DataM.map((data) => {
+            DataM.map((data) => {              
+            let update_at = DatePesonalise(data.update_at)
               let nbrestart = 0
               let nbSurcharge = 0
               data.logs.map((log) => {
@@ -83,9 +98,9 @@ const CardModule = () => {
                         <div className="cardModule__lastValue" > derniere mesure : 
                             {' ' + data.value + ' ' + typeMeasure }
                           </div>
-                          <span className="cardModule__lastValueDate" >
-                            date :  {' ' + data.date}
-                          </span>
+                          <div className="cardModule__lastValueDate" >
+                            date :  {' ' + DatePesonalise(data.date)}
+                          </div>
                         </div>
                     ))}
                 <NumberError typeError={nbrestart} message={'redemarage automatique'} />
@@ -97,7 +112,7 @@ const CardModule = () => {
                 </div>
                 {(data.logs.length > 0 || data.measures.length > 0) && <Link to={`/logs/${data.id}`} className="cardModule__detail"> + detail</Link>}
                 {(data.logs.length == 0 && data.measures.length == 0) && <div className="cardModule__noLog">  pas de logs pour ce module</div>}
-             
+                      <div className="cardModule__update"> {update_at}</div>
               </div>
             
             )})

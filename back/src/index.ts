@@ -20,6 +20,4 @@ app
     .use(Type_measure.routes())
     .use(Measure.routes())
     .use(Log.routes())
-    .listen( port, async () => {
-        console.log(`Server listening on PORT : ${port}`);
-      })
+    .listen( port, async () => {})

@@ -7,7 +7,9 @@ export interface ImoduleIOT {
    name : string,
    typeMeasure_id : number,
    power? : boolean
-   limit : number
+   limit_min : number,
+   limit_max : number,
+   localisation : string,
 }
 
 export interface Imeasure {

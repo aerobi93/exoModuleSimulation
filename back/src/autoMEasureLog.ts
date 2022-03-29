@@ -23,7 +23,7 @@ const autoMeasure_log = () => {
         module_id : id, 
         value: random
       }
-      if (dataIOT.limit < random) {
+      if (  random < dataIOT.limit_min &&  random > dataIOT.limit_min) {
         let dataLog =  {
           module_id : id, 
           surcharge: true
@@ -46,7 +46,9 @@ const autoMeasure_log = () => {
                 let  data = {
                   power :false,
                   name : dataIOT.name,
-                  limit :dataIOT.limit,
+                  limit_min :dataIOT.limit_min,
+                  limit_max :dataIOT.limit_max,
+                  localisation :dataIOT.localisation,
                   typeMeasure_id: dataIOT.typeMeasure_id
                 }
                 updateU(id, data)
@@ -63,13 +65,13 @@ const autoMeasure_log = () => {
                 AddLog(restart) 
               }
             }
-          }, 1000 * 30)
+          }, 1000 * 60 * 60 )
         }  
       }
     return  await addMeasure(data)
     }
    
   
-  }, 1000  * 60 * 2)
+  }, 1000 * 60 * 60 * 4 )
 }
 export default autoMeasure_log

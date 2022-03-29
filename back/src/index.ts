@@ -8,9 +8,9 @@ import  Log from  './routes/log';
 
 import autoMEasureLog from './autoMEasureLog';
 
-autoMEasureLog()
+const port = process.env.PORT || 5000
+
 const app = new Koa()
-const port = 4000
 app
     .use(BodyParser())
     .use(Cors({
@@ -20,4 +20,6 @@ app
     .use(Type_measure.routes())
     .use(Measure.routes())
     .use(Log.routes())
-    .listen( port, async () => {})
+    .listen( port, async () => {console.log(port)});
+
+autoMEasureLog()

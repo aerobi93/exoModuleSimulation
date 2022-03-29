@@ -22,5 +22,9 @@ router.delete('IOT', '/IOT/delete/:id', async (ctx: IRouterContext) => {
     ctx.body = await deleteU(+ctx.params.id)
 })
 
+router.get('/', async (ctx: IRouterContext) => {
+    return ctx.body = 'hello world'
+})
+
 
 export default router
